@@ -1,5 +1,5 @@
-from flask import render_template, flash, redirect, url_for, request
-from appdir import global_string, app, db
+from flask import render_template, flash, redirect, url_for, request, jsonify
+from appdir import global_counter, app, db
 from appdir.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from appdir.email import send_password_reset_email
 from flask_login import current_user, login_user, logout_user, login_required
@@ -159,3 +159,10 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+@app.route('/get_counter', methods=['POST'])
+@login_required
+def get_counter():
+    global global_counter
+    global_counter = global_counter + 1
+    return jsonify({'counter': global_counter})

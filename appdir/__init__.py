@@ -18,8 +18,8 @@ app.config.from_object(Config)
 
 # print(app.config)
 
-global global_string
-global_string = 'Testing Global Variable!!!'
+global global_counter
+global_counter = 0
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

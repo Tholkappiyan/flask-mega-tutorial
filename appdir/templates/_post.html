@@ -14,6 +14,10 @@
             {{ _('%(username)s said %(when)s', username=user_link, when=moment(post.timestamp).fromNow()) }}:
             <br>
             {{ post.body }}
+
+            <span id="counter{{ post.id }}">
+                <a href="javascript:get_counter('#post{{ post.id }}', '#counter{{ post.id }}');">Get counter</a>
+            </span>
         </td>
     </tr>
 </table>
